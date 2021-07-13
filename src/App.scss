@@ -1,5 +1,10 @@
+$placement: center;
+$myColor: #fcfcfc;
+
+
 .App {
-  text-align: center;
+  text-align: $placement;
+  background-color: $myColor;
 }
 
 .App-logo {
