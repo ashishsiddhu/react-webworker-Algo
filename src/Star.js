@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { Button, Toast, Jumbotron, Container, Alert } from 'react-bootstrap';
+// import Carousel from "./systemDesign/Carousel"
+import CountdownTimer from "./systemDesign/CountdownTimer"
+import ReducerExample from "./systemDesign/ReducerExample"
+import Accordion from "./systemDesign/Accordion"
 let response = {};
 
 const ShowTost = ({ myData }) => {
@@ -44,6 +48,20 @@ const ShowAlert = ({ myData }) => {
     )
 }
 
+function StarSVGIcon({style,onClick, onMouseEnter, onMouseLeave}) {
+    return (
+    <>
+        <svg height="25" width="23" className="star rating" data-rating="1" onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+            <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" fill={style.color || "red"}/>
+        </svg>
+        {/* <svg height="30" width="30" onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+            <circle cx="10" cy="10" r="10" fill={style.color || "red"}></circle>
+        
+        </svg> */}
+    </>
+     );
+}
+
 function Star() {
     const [count, setCount] = useState(0);
     const [hoverCount, setHoverCount] = useState(0);
@@ -80,30 +98,34 @@ function Star() {
         }
     }
 
-    const filterData = () => {
+    const starData = () => {
         let arr = [];
         for (let i = 0; i < 5; i++) {
             arr.push(
-                <FontAwesomeIcon icon={faStar} name="ratingStar"
-                    style={{ color: getColor(i) }}
+                <StarSVGIcon 
+                    style={{color:getColor(i)}}
                     onClick={(e) => setCount(i + 1)}
-                    onMouseEnter={(e) => setHoverCount(i + 1)}
+                    onMouseEnter={(e)=>setHoverCount(i + 1)}
                     onMouseLeave={(e) => setHoverCount(0)}
                     key={i}
-                />
-            );
+                    />
+            )
         }
         return arr;
     }
+    
 
 
     return (
         <>
             <div id="myStar" style={{ cursor: "pointer" }}>
-                {filterData()}
+                {starData()}
             </div>
             {count}
-            
+            {/* <Carousel /> */}
+            {/* <CountdownTimer /> */}
+            {/* <ReducerExample/> */}
+            {/* <Accordion/> */}
             <ShowTost myData={"This is my Tost data from Star.js"}></ShowTost>
             <ShowAlert myData={"This is my Alert data from Star.js"}></ShowAlert>
             <p className={"mt-3 mb-1"}>
